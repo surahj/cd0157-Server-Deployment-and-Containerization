@@ -16,7 +16,6 @@ PASSWORD = 'huff-puff'
 def client():
     os.environ['JWT_SECRET'] = SECRET
     main.APP.config['TESTING'] = True
-    assert False
     client = main.APP.test_client()
 
     yield client
@@ -25,7 +24,7 @@ def client():
 
 def test_health(client):
     response = client.get('/')
-    assert response.status_code == 200
+    assert response.status_code == 400
     assert response.json == 'Healthy'
 
 
